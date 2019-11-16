@@ -3,4 +3,8 @@
     <string name="main">Main</string>
     <string name="explicit">Explicit Intent</string>
     <string name="implicit">Implicit Intent</string>
+    <string name="message">Message</string>
+    <string name="send">Send</string>
+    <string name="extra">Enter extra value</string>
+    <string name="input_error">Input required</string>
 </resources>
