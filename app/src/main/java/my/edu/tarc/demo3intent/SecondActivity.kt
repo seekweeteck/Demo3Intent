@@ -12,8 +12,16 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
-        val value: Int = intent.getIntExtra(MainActivity.EXTRA_VALUE, 0)
-        textViewMessage.text = String.format("value = %d", value)
+        when{
+            intent?.action == Intent.ACTION_SEND -> {
+                if(intent.type == "text/plain"){
+                    handleSendText()
+                }
+            }
+            else -> {
+                handleOtherIntent()
+            }
+        }
 
         buttonSend.setOnClickListener {
             if(editTextMessage.text.isEmpty()){
@@ -27,5 +35,15 @@ class SecondActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    fun handleSendText(){
+        val text = intent.getStringExtra(Intent.EXTRA_TEXT)
+        textViewMessage.text = String.format("text=%s", text)
+    }
+
+    fun handleOtherIntent(){
+        val value: Int = intent.getIntExtra(MainActivity.EXTRA_VALUE, 0)
+        textViewMessage.text = String.format("value = %d", value)
     }
 }
